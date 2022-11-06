@@ -1,0 +1,88 @@
+<p
+        className="flex h-10 items-center justify-center px-4 text-sm font-medium text-white sm:px-3 lg:px-4"
+        style={{ backgroundColor: siteTheme?.backgroundPrimaryColor }}
+      >
+        Get free delivery on orders over $100
+      </p>
+      <header
+        className="sticky top-0 left-0 z-20 bg-white border-b border-gray-200"
+        style={{ backgroundColor: "white", color: "black" }}
+      >
+        <nav aria-label="Top" className="mx-auto max-w-7xl sm:px-6 lg:px-8">
+          <div className="px-4 pb-14 sm:px-0 sm:pb-0">
+            <div className="flex h-16 items-center justify-between">
+              {/* Logo */}
+              <div className="flex flex-1">
+                <a href="/">
+                  <span className="sr-only">Your Company</span>
+                  <img
+                    className="h-8 w-auto"
+                    src="https://du8qbp2d8vnhr.cloudfront.net/public/c7d29e30-4a2c-4b67-9658-34b81a54e96b/site-theme/logo/0958ea63-cefa-401e-8c4d-414646614ce7.png"
+                    alt={"merchantLogo"}
+                  />
+                </a>
+              </div>
+
+              <Popover.Group className="absolute inset-x-0 bottom-0 sm:static sm:flex-1 sm:self-stretch">
+                <div className="flex h-14 space-x-8 overflow-x-auto border-t px-4 pb-px sm:h-full sm:justify-center sm:overflow-visible sm:border-t-0 sm:pb-0">
+                  {navigationItems?.map((item) => {
+                    const { id, title, children, linkAction } = item;
+                    return (children || []).length <= 0 ? (
+                      <button
+                        className="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800"
+                        onClick={() => onClickLink(item)}
+                        key={id}
+                      >
+                        {title}
+                      </button>
+                    ) : (
+                      <LinksWithChildren
+                        linkAction={linkAction}
+                        children={children}
+                        onClick={onClickLink}
+                        title={title}
+                        key={id}
+                        id={id}
+                        {...siteTheme}
+                      />
+                    );
+                  })}
+                </div>
+              </Popover.Group>
+
+              <div className="flex flex-1 items-center justify-end">
+                {/* Search */}
+                <a href="#" className="p-2 hover:opacity-90">
+                  <span className="sr-only">Search</span>
+                  <UserIcon className="h-6 w-6" aria-hidden="true" />
+                </a>
+                <a href="#" className="p-2 hover:opacity-90">
+                  <span className="sr-only">Search</span>
+                  <MagnifyingGlassIcon className="h-6 w-6" aria-hidden="true" />
+                </a>
+                <a href="#" className="p-2 hover:opacity-90">
+                  <span className="sr-only">Search</span>
+                  <HeartIcon className="h-6 w-6" aria-hidden="true" />
+                </a>
+                <a href="#" className="p-2 hover:opacity-90">
+                  <span className="sr-only">Search</span>
+                  <TruckIcon className="h-6 w-6" aria-hidden="true" />
+                </a>
+                {/* Cart */}
+                <div className="flow-root ml-4">
+                  <a href="#" className="group -m-2 flex items-center p-2">
+                    <ShoppingBagIcon
+                      className="h-6 w-6 flex-shrink-0 group-hover:opacity-90"
+                      aria-hidden="true"
+                    />
+                    <span className="ml-2 text-sm font-medium group-hover:opacity-90">
+                      0
+                    </span>
+                    <span className="sr-only">items in cart, view bag</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </header>
