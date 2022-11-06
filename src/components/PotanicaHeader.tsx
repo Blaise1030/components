@@ -1,88 +1,12 @@
 import { Dialog, Disclosure, Popover, Transition } from "@headlessui/react";
+import { TCompanyInfo, TSiteTheme, TTopNavigationItems } from "../types";
 import React, { Fragment, ReactElement, useState } from "react";
-import { TCompanyInfo, TSiteTheme } from "../types";
+
 import {
   ChevronDownIcon,
   Bars3Icon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
-
-type TTopNavigationItems = {
-  children?: TTopNavigationItems[];
-  linkAction: any;
-  title: string;
-  id: string;
-};
-
-const navigationItems: TTopNavigationItems[] = [
-  {
-    linkAction: {},
-    title: "About Us",
-    children: [
-      {
-        linkAction: {},
-        title: "Some thing here",
-        children: [],
-        id: "1",
-      },
-      {
-        linkAction: {},
-        title: "Another thing here asdjlasdjkladj asdad",
-        children: [],
-        id: "2",
-      },
-      {
-        linkAction: {},
-        title: "New link",
-        children: [],
-        id: "3",
-      },
-      {
-        linkAction: {},
-        title: "What is this ?",
-        children: [],
-        id: "4",
-      },
-      {
-        linkAction: {},
-        title: "Go to ",
-        children: [],
-        id: "5",
-      },
-      {
-        linkAction: {},
-        title: "Title",
-        children: [],
-        id: "6",
-      },
-    ],
-    id: "1",
-  },
-  {
-    linkAction: {},
-    title: "Woman",
-    children: [],
-    id: "2",
-  },
-  {
-    linkAction: {},
-    title: "Men",
-    children: [],
-    id: "3",
-  },
-  {
-    linkAction: {},
-    title: "Men",
-    children: [],
-    id: "4",
-  },
-  {
-    linkAction: {},
-    title: "More Women",
-    children: [],
-    id: "5",
-  },
-];
 
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(" ");
@@ -90,19 +14,23 @@ function classNames(...classes: any) {
 
 export default function PotanicaHeader({
   additionalInformation,
+  navigationItems,
   notification,
   merchantData,
   onClickLink,
   headerEnd,
   siteTheme,
+  isLoading,
+  isEmpty,
 }: {
   onClickLink: (i: TTopNavigationItems) => void;
+  navigationItems: TTopNavigationItems[];
   merchantData: TCompanyInfo;
   additionalInformation: any;
   siteTheme: TSiteTheme;
   notification?: string;
-  isLoading: boolean;
-  isEmpty: boolean;
+  isLoading?: boolean;
+  isEmpty?: boolean;
   headerEnd: {
     drawerElement?: ReactElement;
     element: ReactElement;
@@ -115,6 +43,7 @@ export default function PotanicaHeader({
   return (
     <React.Fragment>
       <MobileMenu
+        navigationItems={navigationItems}
         endHeader={headerEnd}
         onClick={onClickLink}
         setOpen={setOpen}
@@ -129,7 +58,11 @@ export default function PotanicaHeader({
         </p>
       )}
 
-      <div className="bg-white sticky top-0 z-30">
+      <div
+        className={`bg-white sticky top-0 z-30 ${
+          isLoading ? "animate-pulse" : ""
+        }`}
+      >
         <header className="relative border-b border-gray-200">
           <nav aria-label="Top">
             <div className="bg-white ">
@@ -138,44 +71,69 @@ export default function PotanicaHeader({
                   <div className="flex h-16 items-center justify-between">
                     {/* Logo (lg+) */}
                     <div className="hidden lg:flex lg:flex-1 lg:items-center">
-                      <a href="#">
+                      <a href="/">
                         <span className="sr-only">Your Company</span>
-                        <img
-                          className="h-8 w-auto"
-                          src={merchantData?.companyLogo}
-                          alt=""
-                        />
+                        {Boolean(isLoading || isEmpty) && (
+                          <div className="h-8 w-20 bg-slate-300 text-slate-300 rounded-sm" />
+                        )}
+                        {!Boolean(isLoading || isEmpty) && (
+                          <img
+                            className="h-8 w-auto"
+                            src={merchantData?.companyLogo}
+                            alt=""
+                          />
+                        )}
                       </a>
                     </div>
 
-                    <div className="hidden h-full lg:flex ">
-                      {/* Flyout menus */}
-                      <Popover.Group className="absolute inset-x-0 bottom-0 sm:static sm:flex-1 sm:self-stretch">
-                        <div className="flex h-14 space-x-8 overflow-x-auto border-t px-4 pb-px sm:h-full sm:justify-center sm:overflow-visible sm:border-t-0 sm:pb-0">
-                          {navigationItems?.map((item, index) => {
-                            const { id, title, children, linkAction } = item;
-                            return (children || []).length <= 0 ? (
-                              <button
-                                className="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800"
-                                onClick={() => onClickLink(item)}
-                                key={index}
+                    <div className="hidden h-full lg:flex">
+                      {Boolean(isLoading || isEmpty) && (
+                        <div className="absolute inset-x-0 bottom-0 sm:static sm:flex-1 sm:self-stretch">
+                          <div className="flex h-14 space-x-8 overflow-x-auto border-t px-4 pb-px sm:h-full sm:justify-center sm:overflow-visible sm:border-t-0 sm:pb-0">
+                            {[
+                              "Men",
+                              "Bags",
+                              "Something elese",
+                              "Promotion",
+                            ].map((title) => (
+                              <div
+                                className="bg-slate-300 text-slate-300 h-fit my-auto rounded-sm"
+                                key={title}
                               >
                                 {title}
-                              </button>
-                            ) : (
-                              <LinksWithChildren
-                                linkAction={linkAction}
-                                children={children}
-                                onClick={onClickLink}
-                                title={title}
-                                key={id}
-                                id={id}
-                                {...siteTheme}
-                              />
-                            );
-                          })}
+                              </div>
+                            ))}
+                          </div>
                         </div>
-                      </Popover.Group>
+                      )}
+                      {!Boolean(isLoading || isEmpty) && (
+                        <Popover.Group className="absolute inset-x-0 bottom-0 sm:static sm:flex-1 sm:self-stretch">
+                          <div className="flex h-14 space-x-8 overflow-x-auto border-t px-4 pb-px sm:h-full sm:justify-center sm:overflow-visible sm:border-t-0 sm:pb-0">
+                            {navigationItems?.map((item, index) => {
+                              const { id, title, children, linkAction } = item;
+                              return (children || []).length <= 0 ? (
+                                <button
+                                  className="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800"
+                                  onClick={() => onClickLink(item)}
+                                  key={index}
+                                >
+                                  {title}
+                                </button>
+                              ) : (
+                                <LinksWithChildren
+                                  linkAction={linkAction}
+                                  children={children}
+                                  onClick={onClickLink}
+                                  title={title}
+                                  key={id}
+                                  id={id}
+                                  {...siteTheme}
+                                />
+                              );
+                            })}
+                          </div>
+                        </Popover.Group>
+                      )}
                     </div>
 
                     {/* Mobile menu and search (lg-) */}
@@ -199,24 +157,36 @@ export default function PotanicaHeader({
                         alt=""
                       />
                     </a>
-
-                    <div className="flex flex-1 items-center justify-end">
-                      <div className="flex items-center lg:ml-8">
-                        <div className="flex flex-1 items-center justify-end text-gray-500">
-                          {headerEnd?.map(({ onClick, element, id }, index) => {
-                            return (
-                              <button
-                                className="md:p-2 p-1 hover:opacity-90 cursor-pointer"
-                                onClick={onClick}
-                                key={index}
-                              >
-                                {element}
-                              </button>
-                            );
-                          })}
+                    {Boolean(isLoading || isEmpty) && (
+                      <div className="flex flex-1 items-center justify-end">
+                        <div className="flex items-center lg:ml-8 bg-slate-300 text-slate-300 rounded-sm">
+                          <div className="flex flex-1 items-center justify-end ">
+                            This is the end section
+                          </div>
                         </div>
                       </div>
-                    </div>
+                    )}
+                    {!Boolean(isLoading || isEmpty) && (
+                      <div className="flex flex-1 items-center justify-end">
+                        <div className="flex items-center lg:ml-8">
+                          <div className="flex flex-1 items-center justify-end text-gray-500">
+                            {headerEnd?.map(
+                              ({ onClick, element, id }, index) => {
+                                return (
+                                  <button
+                                    className="md:p-2 p-1 hover:opacity-90 cursor-pointer"
+                                    onClick={onClick}
+                                    key={index}
+                                  >
+                                    {element}
+                                  </button>
+                                );
+                              }
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
@@ -229,11 +199,13 @@ export default function PotanicaHeader({
 }
 
 function MobileMenu({
+  navigationItems,
   endHeader,
   onClick,
   setOpen,
   open,
 }: {
+  navigationItems: TTopNavigationItems[];
   endHeader: {
     drawerElement?: ReactElement;
     element: ReactElement;

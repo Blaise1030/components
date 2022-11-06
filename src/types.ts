@@ -21,3 +21,10 @@ export type TCompanyInfo = {
   companyLogo: string;
   companyName: string;
 };
+
+export type TTopNavigationItems = {
+  children?: TTopNavigationItems[];
+  linkAction: any;
+  title: string;
+  id: string;
+};

@@ -13,6 +13,7 @@ import {
   TruckIcon,
 } from "@heroicons/react/24/outline";
 import { FaInstagram, FaYoutube, FaTwitter, FaFacebook } from "react-icons/fa";
+import { TTopNavigationItems } from "./types";
 
 const companySocials = [
   {
@@ -34,6 +35,76 @@ const companySocials = [
     name: "Facebook",
     link: "https://www.google.com",
     icon: (props: any) => <FaFacebook fontSize={20} />,
+  },
+];
+
+const navigationItems: TTopNavigationItems[] = [
+  {
+    linkAction: {},
+    title: "About Us",
+    children: [
+      {
+        linkAction: {},
+        title: "Some thing here",
+        children: [],
+        id: "1",
+      },
+      {
+        linkAction: {},
+        title: "Another thing here asdjlasdjkladj asdad",
+        children: [],
+        id: "2",
+      },
+      {
+        linkAction: {},
+        title: "New link",
+        children: [],
+        id: "3",
+      },
+      {
+        linkAction: {},
+        title: "What is this ?",
+        children: [],
+        id: "4",
+      },
+      {
+        linkAction: {},
+        title: "Go to ",
+        children: [],
+        id: "5",
+      },
+      {
+        linkAction: {},
+        title: "Title",
+        children: [],
+        id: "6",
+      },
+    ],
+    id: "1",
+  },
+  {
+    linkAction: {},
+    title: "Woman",
+    children: [],
+    id: "2",
+  },
+  {
+    linkAction: {},
+    title: "Men",
+    children: [],
+    id: "3",
+  },
+  {
+    linkAction: {},
+    title: "Men",
+    children: [],
+    id: "4",
+  },
+  {
+    linkAction: {},
+    title: "More Women",
+    children: [],
+    id: "5",
   },
 ];
 
@@ -122,14 +193,14 @@ function App() {
   return (
     <div id="scroll-container">
       <PotanicaHeader
-        headerEnd={potanicaHeaderEnd}
-        onClickLink={console.log}
         notification={"THis is notification"}
-        siteTheme={item}
-        merchantData={companyInfo}
         additionalInformation={undefined}
-        isLoading={false}
-        isEmpty={false}
+        navigationItems={navigationItems}
+        headerEnd={potanicaHeaderEnd}
+        merchantData={companyInfo}
+        onClickLink={console.log}
+        siteTheme={item}
+        isEmpty={true}
       />
       <div className="flex flex-col space-y-14 lg:space-y-24 bg-gray-50 py-0 md:pt-12 md:pb-20 pb-12">
         <PotanicaBanner
