@@ -1,6 +1,6 @@
 import { TCompanyInfo, TFooterProps, TSiteTheme } from "./types";
 
-const PotanicaFooter: React.FC<TFooterProps> = ({
+const PotanicaFooter = ({
   footerStructure,
   companySocials,
   companyInfo,

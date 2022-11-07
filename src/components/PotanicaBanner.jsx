@@ -17,12 +17,12 @@ export default function PotanicaBanner({
   siteTheme,
   isEmpty,
   banners,
-}: ILandingPageBannerSectionProps) {
+}) {
   const [bannerIndex, setBannerIndex] = useState(0);
   const onLeftClicked = () => setBannerIndex((b) => b - 1);
   const onRightClicked = () => setBannerIndex((b) => b + 1);
 
-  function slideRenderer(params: { index: number; key: any }) {
+  function slideRenderer(params) {
     const { index, key } = params;
     return banners?.map((banner) => {
       const {
@@ -92,12 +92,6 @@ export default function PotanicaBanner({
     isLoading,
     onSelect,
     color,
-  }: {
-    onSelect: (n: number) => void;
-    elementNumber: number[];
-    selectedNumber: number;
-    isLoading: boolean;
-    color: string;
   }) {
     return (
       <div className="flex flex-row space-x-2 w-full items-center justify-center">
@@ -126,13 +120,7 @@ export default function PotanicaBanner({
     );
   }
 
-  function SlideLeftButton({
-    onClick,
-    color,
-  }: {
-    onClick: () => void;
-    color: string;
-  }) {
+  function SlideLeftButton({ onClick, color }) {
     return (
       <div className="absolute z-10 top-0 left-5 md:left-10 h-full md:flex flex-row items-center justify-center hidden">
         <button
@@ -145,13 +133,7 @@ export default function PotanicaBanner({
     );
   }
 
-  function SlideRightButton({
-    onClick,
-    color,
-  }: {
-    onClick: () => void;
-    color: string;
-  }) {
+  function SlideRightButton({ onClick, color }) {
     return (
       <div className="absolute z-10 top-0 right-5 md:right-10 h-full md:flex flex-row items-center justify-center hidden">
         <button
@@ -164,7 +146,7 @@ export default function PotanicaBanner({
     );
   }
 
-  function PotanicaBannerSlides(props: TBannerProps & { onClick: () => void }) {
+  function PotanicaBannerSlides(props) {
     const { bannerImage, title, onClick } = props;
     return (
       <div
