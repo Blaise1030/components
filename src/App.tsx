@@ -13,7 +13,7 @@ import {
   TruckIcon,
 } from "@heroicons/react/24/outline";
 import { FaInstagram, FaYoutube, FaTwitter, FaFacebook } from "react-icons/fa";
-import { TTopNavigationItems } from "./types";
+import { TTopNavigationItems } from "./components/types";
 
 const companySocials = [
   {
