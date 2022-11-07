@@ -1,20 +1,8 @@
-import { TSiteTheme } from "./types";
-
-interface ILandingPageFeaturedCollectionSectionProps {
-  onClickFeaturedCollection: (category: TCollectionProps) => void;
-  categories: TCollectionProps[];
-  siteTheme: TSiteTheme;
-  isLoading?: boolean;
-  isEmpty?: boolean;
-}
-
-type TCollectionProps = {
-  id: string;
-  title: string;
-  image: string;
-  description: string;
-  additionalInfo: any;
-};
+import {
+  ILandingPageFeaturedCollectionSectionProps,
+  TCollectionProps,
+  TSiteTheme,
+} from "./types";
 
 export default function PotanicaFeaturedCollectionBanner(
   props: ILandingPageFeaturedCollectionSectionProps

@@ -1,20 +1,4 @@
-import { TSiteTheme } from "./types";
-
-type TCategoryProps = {
-  id: string;
-  title: string;
-  image: string;
-  additionalInfo: any;
-};
-
-interface ILandingPageCategorySectionProps {
-  onClickCategory: (category: TCategoryProps) => void;
-  onBrowseMoreClicked: () => void;
-  categories: TCategoryProps[];
-  siteTheme: TSiteTheme;
-  isLoading?: boolean;
-  isEmpty?: boolean;
-}
+import { ILandingPageCategorySectionProps, TSiteTheme } from "./types";
 
 export default function PotanicaCategory({
   onClickCategory,

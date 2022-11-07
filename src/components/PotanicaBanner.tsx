@@ -3,26 +3,13 @@ import { virtualize } from "react-swipeable-views-utils";
 import SwipeableViews from "react-swipeable-views";
 import { mod } from "react-swipeable-views-core";
 import { useState } from "react";
-import { TSiteTheme } from "./types";
+import {
+  ILandingPageBannerSectionProps,
+  TBannerProps,
+  TSiteTheme,
+} from "./types";
 
 const VirtualizeSwipeableViews = virtualize(SwipeableViews);
-
-type TBannerProps = {
-  additionalInformation: any;
-  description: string;
-  bannerImage: string;
-  buttonTitle: string;
-  title: string;
-  id: string;
-};
-
-interface ILandingPageBannerSectionProps {
-  onClickBannerButton: (bannerInfo: TBannerProps) => void;
-  banners: TBannerProps[];
-  siteTheme: TSiteTheme;
-  isLoading?: boolean;
-  isEmpty?: boolean;
-}
 
 export default function PotanicaBanner({
   onClickBannerButton,

@@ -1,17 +1,4 @@
-import { TCompanyInfo, TSiteTheme } from "./types";
-
-type TFooterProps = {
-  footerStructure: { name: string; links: { name: string; link: string }[] }[];
-  companyInfo: TCompanyInfo;
-  siteTheme: TSiteTheme;
-  isLoading?: boolean;
-  isEmpty?: boolean;
-  companySocials: {
-    icon: React.FC<any>;
-    link?: string;
-    name: string;
-  }[];
-};
+import { TCompanyInfo, TFooterProps, TSiteTheme } from "./types";
 
 const PotanicaFooter: React.FC<TFooterProps> = ({
   footerStructure,

@@ -1,32 +1,10 @@
 import React from "react";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
-import { TSiteTheme } from "./types";
-
-type TFeaturedCollections = {
-  collectionItems: TCollectionsItems[];
-  collectionTitle: string;
-  additionalInfo: any;
-  id: string;
-};
-
-type TCollectionsItems = {
-  discountPrice?: string;
-  isOutOfStock: boolean;
-  displayImage: string;
-  displayPrice: string;
-  productTitle: string;
-  additionalInfo: any;
-  id: string;
-};
-
-interface ILandingPageProductCollectionSectionProps {
-  onProductClicked: (category: TCollectionsItems) => void;
-  onSeeMoreClicked: (data: TFeaturedCollections) => void;
-  collections: TFeaturedCollections[];
-  isLoading?: boolean;
-  siteTheme: TSiteTheme;
-  isEmpty?: boolean;
-}
+import {
+  ILandingPageProductCollectionSectionProps,
+  TCollectionsItems,
+  TSiteTheme,
+} from "./types";
 
 export default function PotanicaFeaturedBanners(
   props: ILandingPageProductCollectionSectionProps
