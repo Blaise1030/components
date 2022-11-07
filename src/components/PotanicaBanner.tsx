@@ -3,7 +3,7 @@ import { virtualize } from "react-swipeable-views-utils";
 import SwipeableViews from "react-swipeable-views";
 import { mod } from "react-swipeable-views-core";
 import { useState } from "react";
-import { TSiteTheme } from "../types";
+import { TSiteTheme } from "./types";
 
 const VirtualizeSwipeableViews = virtualize(SwipeableViews);
 

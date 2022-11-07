@@ -1,6 +1,6 @@
 import React from "react";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
-import { TSiteTheme } from "../types";
+import { TSiteTheme } from "./types";
 
 type TFeaturedCollections = {
   collectionItems: TCollectionsItems[];

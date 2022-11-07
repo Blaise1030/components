@@ -1,5 +1,5 @@
 import { Dialog, Disclosure, Popover, Transition } from "@headlessui/react";
-import { TCompanyInfo, TSiteTheme, TTopNavigationItems } from "../types";
+import { TCompanyInfo, TSiteTheme, TTopNavigationItems } from "./types";
 import React, { Fragment, ReactElement, useState } from "react";
 
 import {

@@ -1,4 +1,4 @@
-import { TCompanyInfo, TSiteTheme } from "../types";
+import { TCompanyInfo, TSiteTheme } from "./types";
 
 type TFooterProps = {
   footerStructure: { name: string; links: { name: string; link: string }[] }[];

@@ -1,4 +1,4 @@
-import { TSiteTheme } from "../types";
+import { TSiteTheme } from "./types";
 
 interface ILandingPageFeaturedCollectionSectionProps {
   onClickFeaturedCollection: (category: TCollectionProps) => void;
