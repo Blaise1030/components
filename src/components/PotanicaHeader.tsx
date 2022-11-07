@@ -7,7 +7,7 @@ import {
   XMarkIcon,
 } from "@heroicons/react/24/outline";
 
-function classNames(...classes) {
+function classNames(...classes: any) {
   return classes.filter(Boolean).join(" ");
 }
 
@@ -21,6 +21,21 @@ export default function PotanicaHeader({
   siteTheme,
   isLoading,
   isEmpty,
+}: {
+  onClickLink: (i: TTopNavigationItems) => void;
+  navigationItems: TTopNavigationItems[];
+  merchantData: TCompanyInfo;
+  additionalInformation: any;
+  siteTheme: TSiteTheme;
+  notification?: string;
+  isLoading?: boolean;
+  isEmpty?: boolean;
+  headerEnd: {
+    drawerElement?: ReactElement;
+    element: ReactElement;
+    onClick: () => void;
+    id: string;
+  }[];
 }) {
   const [open, setOpen] = useState(false);
 
@@ -182,7 +197,24 @@ export default function PotanicaHeader({
   );
 }
 
-function MobileMenu({ navigationItems, endHeader, onClick, setOpen, open }) {
+function MobileMenu({
+  navigationItems,
+  endHeader,
+  onClick,
+  setOpen,
+  open,
+}: {
+  navigationItems: TTopNavigationItems[];
+  endHeader: {
+    drawerElement?: ReactElement;
+    element: ReactElement;
+    onClick: () => void;
+    id: string;
+  }[];
+  onClick: (item: TTopNavigationItems) => void;
+  setOpen: (b: boolean) => void;
+  open: boolean;
+}) {
   return (
     <Transition.Root show={open} as={Fragment}>
       <Dialog as="div" className="relative z-40 lg:hidden" onClose={setOpen}>
@@ -295,8 +327,11 @@ function MobileMenu({ navigationItems, endHeader, onClick, setOpen, open }) {
   );
 }
 
-function LinksWithChildren(props) {
-  function sliceIntoChunks(arr, chunkSize) {
+function LinksWithChildren(
+  props: TTopNavigationItems &
+    TSiteTheme & { onClick: (item: TTopNavigationItems) => void }
+) {
+  function sliceIntoChunks(arr: any[], chunkSize: number) {
     const res = [];
     for (let i = 0; i < arr.length; i += chunkSize)
       res.push(arr.slice(i, i + chunkSize));
@@ -341,7 +376,7 @@ function LinksWithChildren(props) {
                   <div className="grid grid-cols-1 gap-y-10 gap-x-6 lg:gap-x-8">
                     <div className="mt-4 grid grid-cols-2 grid-flow-col pt-0 pb-8 sm:pt-8 sm:pb-20 gap-5">
                       {sliceIntoChunks(props?.children || [], 4).map(
-                        (items, index) => (
+                        (items: any[], index: number) => (
                           <ul
                             className="space-y-6 col-span-1"
                             role="list"

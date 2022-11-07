@@ -4,7 +4,9 @@ import {
   TSiteTheme,
 } from "./types";
 
-export default function PotanicaFeaturedCollectionBanner(props) {
+export default function PotanicaFeaturedCollectionBanner(
+  props: ILandingPageFeaturedCollectionSectionProps
+) {
   const { categories, onClickFeaturedCollection, isLoading, isEmpty } = props;
 
   return (
@@ -15,7 +17,7 @@ export default function PotanicaFeaturedCollectionBanner(props) {
             {(isEmpty || isLoading) &&
               [1, 2]?.map(() => <PotanicaFeaturedCollectionBannerEmptyState />)}
             {!(isEmpty || isLoading) &&
-              categories.map((cat) => {
+              categories.map((cat: TCollectionProps) => {
                 const { id, title, image, description, additionalInfo } = cat;
                 return (
                   <PotanicaFeaturedCollectionCard
@@ -42,7 +44,13 @@ function PotanicaFeaturedCollectionBannerEmptyState() {
   );
 }
 
-function PotanicaFeaturedCollectionCard({ onClick, title, image }) {
+function PotanicaFeaturedCollectionCard({
+  onClick,
+  title,
+  image,
+}: TCollectionProps & {
+  onClick: () => void;
+}) {
   return (
     <div
       className="rounded-md aspect-[2/1] shadow-lg relative cursor-pointer"

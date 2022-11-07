@@ -6,7 +6,7 @@ export default function PotanicaCategory({
   isLoading,
   isEmpty,
   siteTheme,
-}) {
+}: ILandingPageCategorySectionProps) {
   return (
     <div className={`${isLoading ? "animate-pulse" : ""}`}>
       <div className="lg:mx-auto lg:max-w-7xl lg:px-8">

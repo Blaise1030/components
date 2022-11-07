@@ -6,7 +6,9 @@ import {
   TSiteTheme,
 } from "./types";
 
-export default function PotanicaFeaturedBanners(props) {
+export default function PotanicaFeaturedBanners(
+  props: ILandingPageProductCollectionSectionProps
+) {
   const {
     onProductClicked,
     onSeeMoreClicked,
@@ -70,8 +72,8 @@ export default function PotanicaFeaturedBanners(props) {
                           displayPrice,
                           isOutOfStock,
                           productTitle,
-                        },
-                        i
+                        }: TCollectionsItems,
+                        i: number
                       ) => (
                         <PotanicaProductCard
                           discountPrice={discountPrice || ""}
@@ -107,7 +109,15 @@ export default function PotanicaFeaturedBanners(props) {
   );
 }
 
-function FeaturedProductLoadingState({ siteTheme, isEmpty, index }) {
+function FeaturedProductLoadingState({
+  siteTheme,
+  isEmpty,
+  index,
+}: {
+  siteTheme: TSiteTheme;
+  isEmpty: boolean;
+  index: number;
+}) {
   return (
     <div className="lg:mx-auto lg:max-w-7xl lg:px-8">
       <div className="flex items-center justify-between px-4 sm:px-6 lg:px-0">
@@ -136,7 +146,7 @@ function FeaturedProductLoadingState({ siteTheme, isEmpty, index }) {
             className="mx-4 inline-flex space-x-4 sm:mx-6 lg:mx-0 lg:grid lg:grid-cols-4 lg:gap-x-8 lg:gap-y-8 lg:space-x-0"
             role="list"
           >
-            {[1, 2, 3, 4]?.map((x) => (
+            {[1, 2, 3, 4]?.map((x: number) => (
               <li
                 className="relative flex flex-col overflow-hidden rounded-lg p-2 md:p-3 xl:w-auto w-[220px] border border-light-50 cursor-pointer bg-slate-300 text-slate-300"
                 key={x}
@@ -176,7 +186,9 @@ function FeaturedProductLoadingState({ siteTheme, isEmpty, index }) {
   );
 }
 
-function PotanicaProductCard(item) {
+function PotanicaProductCard(
+  item: TCollectionsItems & { onClick: (c: TCollectionsItems) => void }
+) {
   const {
     additionalInfo,
     discountPrice,
