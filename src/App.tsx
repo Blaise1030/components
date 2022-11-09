@@ -38,7 +38,7 @@ const companySocials = [
   },
 ];
 
-const navigationItems: TTopNavigationItems[] = [
+const navigationItems = [
   {
     linkAction: {},
     title: "About Us",
@@ -241,7 +241,7 @@ function App() {
           onClickCategory={(category) => {
             console.log(category);
           }}
-          onBrowseMoreClicked={function (): void {
+          onBrowseMoreClicked={function () {
             console.log();
           }}
           categories={[
@@ -284,7 +284,7 @@ function App() {
         />
         <PotanicaFeaturedCollectionBanner
           siteTheme={item}
-          onClickFeaturedCollection={(category: any) => {
+          onClickFeaturedCollection={(category) => {
             console.log(category);
           }}
           categories={[
@@ -307,10 +307,10 @@ function App() {
           ]}
         />
         <PotanicaFeaturedProducts
-          onProductClicked={function (category): void {
+          onProductClicked={function (category) {
             console.log(category);
           }}
-          onSeeMoreClicked={function (data: any): void {
+          onSeeMoreClicked={function (data) {
             console.log(data);
           }}
           siteTheme={item}
